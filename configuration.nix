@@ -83,7 +83,7 @@
   users.users."slong" = {
     isNormalUser = true;
     description = "slong";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -91,12 +91,12 @@
   
   # sysytem wide packages
   environment.systemPackages = with pkgs; [
-   vim
    git
    wget
    ghostty
    telegram-desktop
    gh
+   dnsmasq
   ];
 
   # Install firefox.
@@ -109,6 +109,14 @@
 
   #Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  
+  # libvirtd 
+  virtualisation.libvirtd.enable = true;   
+  programs.virt-manager.enable = true;
+  
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+
   # tailscale service
   services.tailscale.enable = true;
   networking.nftables.enable = true;
@@ -117,7 +125,7 @@
     enable = true;
     allowedTCPPorts = [ 22 ];
     # Always allow traffic from your Tailscale network
-    trustedInterfaces = [ config.services.tailscale.interfaceName ];
+    trustedInterfaces = [ "virbr0" config.services.tailscale.interfaceName ];
     # Allow the Tailscale UDP port through the firewall
     allowedUDPPorts = [ config.services.tailscale.port ];
   };
@@ -147,7 +155,9 @@
   fonts.packages = with pkgs; [ 
     noto-fonts
   ];
-  
+   
+ 
+  # garbage collector  
   nix.gc = {
    automatic = true;
    dates = "weekly";

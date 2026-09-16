@@ -7,6 +7,7 @@
      inputs.areofyl-fetch.homeManagerModules.default
      inputs.spicetify-nix.homeManagerModules.default
      ./sh.nix
+     ./aerofetch.nix
   ];
 
   home.username = "slong";
@@ -26,28 +27,9 @@
     imagemagick
     jq
     binutils
+    cifs-utils
   ];
 
-  programs.fetch = {
-    enable = true;
-    labelColor = "red";
-    info = [
-      "os"
-      "kernel"
-      "uptime"
-      "host"
-      "font"
-      "terminal"
-      "battery"
-      "locale"
-      "wm"
-      "shell"
-      "packages"
-      "display"
-    ];
-    speed = 1.0;
-    spin = "xy";
-  };
   programs.spicetify =
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
