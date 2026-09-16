@@ -17,8 +17,11 @@
       "shell"
       "packages"
       "display"
+      "memory"
+      "disk"
+      "cpu"
     ];
-    speed = 1.0;
+    speed = 1.5;
     spin = "xy";
   };
 }

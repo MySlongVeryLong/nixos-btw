@@ -29,6 +29,12 @@
     jq
     binutils
     cifs-utils
+    yt-dlp
+    file
+    ffmpeg
+    mpv
+    eog
+    fzf
   ];
  
 }

@@ -4,6 +4,7 @@ let
   myAliases = {
     ".." = "cd ..";
     ll = "ls -l";
+    ls = "eza";
     nrs = "sudo nixos-rebuild switch --flake .";
   };
 in
