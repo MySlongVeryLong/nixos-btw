@@ -23,10 +23,9 @@
     obs-studio
     bat
     eza
-    gh
     imagemagick
     jq
-    kitty
+    binutils
   ];
 
   programs.fetch = {
