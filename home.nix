@@ -1,8 +1,6 @@
 { config, pkgs, inputs, ... }:
 
-
 {
-
   imports = [ 
      inputs.areofyl-fetch.homeManagerModules.default
      inputs.spicetify-nix.homeManagerModules.default
@@ -21,7 +19,7 @@
     shotcut
     tealdeer
     obsidian
-    fastfetch
+    neofetch
     obs-studio
     bat
     eza
