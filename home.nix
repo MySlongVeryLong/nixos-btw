@@ -19,7 +19,7 @@
     shotcut
     tealdeer
     obsidian
-    neofetch
+    hyfetch
     obs-studio
     bat
     eza
@@ -33,6 +33,8 @@
     mpv
     eog
     fzf
+    wireshark
+    proton-vpn
   ];
  
 }
