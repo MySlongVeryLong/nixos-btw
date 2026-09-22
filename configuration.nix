@@ -46,11 +46,12 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = false;
-  services.desktopManager.gnome.enable = false;
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  # KDE
+  #services.xserver.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   #services.xserver.xkb = {
@@ -83,7 +84,7 @@
   users.users."slong" = {
     isNormalUser = true;
     description = "slong";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -111,7 +112,11 @@
   services.openssh.enable = true;
   
   # libvirtd 
-  virtualisation.libvirtd.enable = true;   
+  virtualisation.libvirtd = {
+   enable = true;
+   qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+  };
+ 
   programs.virt-manager.enable = true;
   
   services.qemuGuest.enable = true;

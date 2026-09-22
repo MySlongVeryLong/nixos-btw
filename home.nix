@@ -34,6 +34,7 @@
     eog
     fzf
     wireshark
+    mtr
     proton-vpn
   ];
  
