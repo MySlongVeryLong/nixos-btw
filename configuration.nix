@@ -98,6 +98,10 @@
    telegram-desktop
    gh
    dnsmasq
+   mangohud
+   nh
+   nix-output-monitor
+   nvd
   ];
 
   # Install firefox.
@@ -160,7 +164,12 @@
   fonts.packages = with pkgs; [ 
     noto-fonts
   ];
- 
+  
+  # nh (nixos helper)
+  environment.sessionVariables = {
+   NH_OS_FLAKE = "/home/slong/.dotfiles";
+  };   
+
   # garbage collector  
   nix.gc = {
    automatic = true;
@@ -176,6 +185,9 @@
    remotePlay.openFirewall = true;
    dedicatedServer.openFirewall = true;
 
-  }
+  };
+  # gamemode
+  programs.gamemode.enable = true;
+  programs.steam.gamescopeSession.enable = true;
   
 }

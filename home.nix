@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
     vim
+    neovim
     btop
     shotcut
     tealdeer
@@ -36,6 +37,11 @@
     wireshark
     mtr
     proton-vpn
+    protonup-ng
   ];
- 
+
+ home.sessionVariables = {
+  
+   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${config.home.homeDirectory}/.steam/root/compatibilitytools.d";
+ };
 }
