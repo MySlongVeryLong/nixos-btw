@@ -1,24 +1,25 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
-  
-    hostName = "nixos-btw"; 
-    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    hostName = "nixos-btw";
+    wireless.enable = true; # Enables wireless support via wpa_supplicant.
+    nameservers = ["1.1.1.1" "8.8.8.8"];
   };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -26,7 +27,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "Asia/Phnom_Penh";
 
@@ -84,25 +84,30 @@
   users.users."slong" = {
     isNormalUser = true;
     description = "slong";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
+    extraGroups = ["networkmanager" "wheel" "libvirtd" "kvm"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
-  
+
   # sysytem wide packages
   environment.systemPackages = with pkgs; [
-   git
-   wget
-   ghostty
-   telegram-desktop
-   gh
-   dnsmasq
-   mangohud
-   nh
-   nix-output-monitor
-   nvd
+    git
+    wget
+    ghostty
+    telegram-desktop
+    gh
+    dnsmasq
+    mangohud
+    nh
+    nix-output-monitor
+    nvd
+    lsof
+    usbutils
+    alejandra
   ];
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -114,17 +119,17 @@
 
   #Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  
-  # libvirtd 
+
+  # libvirtd
   virtualisation.libvirtd = {
-   enable = true;
-   qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    enable = true;
+    qemu.vhostUserPackages = with pkgs; [virtiofsd];
   };
- 
+
   programs.virt-manager.enable = true;
-  
+
   services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+  services.spice-vdagentd.enable = true; # enable copy and paste between host and guest
 
   # tailscale service
   services.tailscale.enable = true;
@@ -132,62 +137,61 @@
   # Open ports in the firewall.
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
+    allowedTCPPorts = [22];
     # Always allow traffic from your Tailscale network
-    trustedInterfaces = [ "virbr0" config.services.tailscale.interfaceName ];
+    trustedInterfaces = ["virbr0" config.services.tailscale.interfaceName];
     # Allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    allowedUDPPorts = [config.services.tailscale.port];
   };
 
   # 2. Force tailscaled to use nftables (Critical for clean nftables-only systems)
   # This avoids the "iptables-compat" translation layer issues.
-  systemd.services.tailscaled.serviceConfig.Environment = [ 
-    "TS_DEBUG_FIREWALL_MODE=nftables" 
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
   ];
 
-  # 3. Optimization: Prevent systemd from waiting for network online 
+  # 3. Optimization: Prevent systemd from waiting for network online
   # (Optional but recommended for faster boot with VPNs)
-  systemd.network.wait-online.enable = false; 
+  systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
   system.stateVersion = "26.05"; # Did you read the comment?
-   
-  nix.settings.experimental-features = ["nix-command" "flakes" ];
-  
-  # bash shell 
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # bash shell
   programs.bash.enable = true;
-  
+
   # use zsh
-  # programs.zsh.enable = true; 
+  # programs.zsh.enable = true;
   # environment.shells = with pkgs; [ zsh ];
-   
-  fonts.packages = with pkgs; [ 
+
+  fonts.packages = with pkgs; [
     noto-fonts
   ];
-  
-  # nh (nixos helper)
+
+  # environment variables
   environment.sessionVariables = {
-   NH_OS_FLAKE = "/home/slong/.dotfiles";
-  };   
+    NH_OS_FLAKE = "$HOME/.dotfiles";
+    EDITOR = "neovim";
+  };
 
-  # garbage collector  
+  # garbage collector
   nix.gc = {
-   automatic = true;
-   dates = "weekly";
-   options = "--delete-older-than 10d";
-  }; 
-  
-  # steam 
- 
-  programs.steam = {
-   
-   enable = true;
-   remotePlay.openFirewall = true;
-   dedicatedServer.openFirewall = true;
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 10d";
+  };
 
+  # steam
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
   # gamemode
   programs.gamemode.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  
+
 }

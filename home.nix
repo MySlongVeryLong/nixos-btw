@@ -1,21 +1,25 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  imports = [ 
-     inputs.areofyl-fetch.homeManagerModules.default
-     inputs.spicetify-nix.homeManagerModules.default
-     ./sh.nix
-     ./aerofetch.nix
-     ./spicetify.nix
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.areofyl-fetch.homeManagerModules.default
+    inputs.spicetify-nix.homeManagerModules.default
+    ./sh.nix
+    ./aerofetch.nix
+    ./spicetify.nix
+    ./session-variables.nix
   ];
 
   home.username = "slong";
   home.homeDirectory = "/home/slong";
   home.stateVersion = "26.05";
-
   home.packages = with pkgs; [
+    nixd
+    nvim
     vim
-    neovim
     btop
     shotcut
     tealdeer
@@ -40,8 +44,4 @@
     protonup-ng
   ];
 
- home.sessionVariables = {
-  
-   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${config.home.homeDirectory}/.steam/root/compatibilitytools.d";
- };
 }

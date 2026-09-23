@@ -8,7 +8,7 @@
       url = "github:areofyl/fetch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,30 +20,38 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, areofyl-fetch, spicetify-nix, ... } @ inputs:
-   let
-     lib = nixpkgs.lib;
-     system = "x86_64-linux";
-   in {
-   nixosConfigurations = {
-    nixos-btw = lib.nixosSystem {
-       inherit system;
-       modules = [
-         ./configuration.nix
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    areofyl-fetch,
+    spicetify-nix,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+  in {
+    nixosConfigurations = {
+      nixos-btw = lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./configuration.nix
 
-         # 1. Inject the NixOS module into your system configuration
-         home-manager.nixosModules.default
-         {
-           home-manager = {
-             useGlobalPkgs = true;
-             useUserPackages = true;
-             extraSpecialArgs = { inherit inputs; };
-             users.slong = import ./home.nix; 
-           };  
-         }
-       ];
+          # 1. Inject the NixOS module into your system configuration
+          home-manager.nixosModules.default
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.slong = import ./home.nix;
+            };
+          }
+        ];
+      };
     };
   };
- };
 }
-
