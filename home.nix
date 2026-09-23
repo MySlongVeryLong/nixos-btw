@@ -18,7 +18,7 @@
   home.stateVersion = "26.05";
   home.packages = with pkgs; [
     nixd
-    nvim
+    neovim
     vim
     btop
     shotcut
@@ -43,5 +43,16 @@
     proton-vpn
     protonup-ng
   ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
+    oh-my-zsh = {
+      enable = true;
+      plugins = ["git"];
+      theme = "af-magic";
+    };
+  };
 }

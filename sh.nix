@@ -13,4 +13,11 @@ in
     enable = true;
     shellAliases = myAliases;
   };
+
+ programs.zsh = {
+    enable = true;
+    shellAliases = myAliases;
+  };
 }
+
+

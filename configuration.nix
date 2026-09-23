@@ -160,10 +160,10 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # bash shell
-  programs.bash.enable = true;
+  # programs.bash.enable = true;
 
   # use zsh
-  # programs.zsh.enable = true;
+  programs.zsh.enable = true;
   # environment.shells = with pkgs; [ zsh ];
 
   fonts.packages = with pkgs; [
