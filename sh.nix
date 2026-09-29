@@ -10,7 +10,7 @@ let
 in
 {
  programs.bash = {
-    enable = false;
+    enable = true;
     shellAliases = myAliases;
   };
 
