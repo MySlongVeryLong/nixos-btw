@@ -105,6 +105,10 @@
     lsof
     usbutils
     alejandra
+    unzip
+    gzip
+    p7zip
+    motrix
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
