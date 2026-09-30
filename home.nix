@@ -42,7 +42,9 @@
     mtr
     proton-vpn
     protonup-ng
+    tmux
   ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;

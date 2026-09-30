@@ -83,6 +83,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."slong" = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "slong";
     extraGroups = ["networkmanager" "wheel" "libvirtd" "kvm"];
     packages = with pkgs; [
@@ -164,10 +165,10 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # bash shell
-  programs.bash.enable = true;
+  #programs.bash.enable = true;
 
   # use zsh
-  programs.zsh.enable = false;
+  programs.zsh.enable = true;
   # environment.shells = with pkgs; [ zsh ];
 
   fonts.packages = with pkgs; [
