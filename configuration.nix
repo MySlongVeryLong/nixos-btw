@@ -110,6 +110,8 @@
     gzip
     p7zip
     motrix
+    libisoburn
+    libreoffice	
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -179,6 +181,7 @@
   environment.sessionVariables = {
     NH_OS_FLAKE = "$HOME/.dotfiles";
     EDITOR = "neovim";
+    GOAT = "slong";
   };
 
   # garbage collector

@@ -43,6 +43,9 @@
     proton-vpn
     protonup-ng
     tmux
+    nmap
+    virt-viewer
+    yamlfmt
   ];
 
   programs.zsh = {
