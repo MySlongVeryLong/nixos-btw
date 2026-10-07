@@ -112,6 +112,10 @@
     motrix
     libisoburn
     libreoffice	
+    nix-prefetch-github
+    inetutils
+    kitty
+    filezilla
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

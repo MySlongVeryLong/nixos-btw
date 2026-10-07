@@ -46,8 +46,10 @@
     nmap
     virt-viewer
     yamlfmt
+    figlet
   ];
 
+  # zsh
   programs.zsh = {
     enable = true;
     enableCompletion = true;
