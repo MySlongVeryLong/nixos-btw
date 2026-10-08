@@ -111,11 +111,12 @@
     p7zip
     motrix
     libisoburn
-    libreoffice	
+    libreoffice
     nix-prefetch-github
     inetutils
     kitty
     filezilla
+    ciscoPacketTracer9
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -205,5 +206,4 @@
   # gamemode
   programs.gamemode.enable = true;
   programs.steam.gamescopeSession.enable = true;
-
 }
