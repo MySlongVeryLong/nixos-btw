@@ -47,6 +47,7 @@
     virt-viewer
     yamlfmt
     figlet
+    ascii
   ];
 
   # zsh
