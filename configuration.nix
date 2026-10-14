@@ -118,6 +118,7 @@
     filezilla
     ciscoPacketTracer9
     anki
+    vscode
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
