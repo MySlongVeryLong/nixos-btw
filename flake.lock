@@ -7,16 +7,36 @@
         ]
       },
       "locked": {
-        "lastModified": 1791768325,
-        "narHash": "sha256-fHG4dOVrVH9ZaLkq8zWB00H+3p1l+D1oIRU6WWX3rfM=",
+        "lastModified": 1791855008,
+        "narHash": "sha256-hgoTIBD2pvZDJxefMz+g8ALs4lqsMHOPHH4wwiomsaA=",
         "owner": "areofyl",
         "repo": "fetch",
-        "rev": "e5e0d414bdca2d67727b6a3b8beead096289e148",
+        "rev": "e3087810e2a131ed4093440e783ac96a101ad806",
         "type": "github"
       },
       "original": {
         "owner": "areofyl",
         "repo": "fetch",
+        "type": "github"
+      }
+    },
+    "containerlab": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791734482,
+        "narHash": "sha256-Sgq6/ovcYDdNCMJh0SxNASQNTfnqDrgjWq/CZIll5wk=",
+        "owner": "srl-labs",
+        "repo": "containerlab",
+        "rev": "48b22f414e75e59b9eaa855dda636ceda8e5e4df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srl-labs",
+        "repo": "containerlab",
         "type": "github"
       }
     },
@@ -27,11 +47,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790996401,
-        "narHash": "sha256-f+kOxEmOUnQazVAmGg0i8hzwgd1kX/geY+k/Dpheye8=",
+        "lastModified": 1791938526,
+        "narHash": "sha256-yNYK2pdk3bCtJrpblrNYA6hZKdybWUeyTtx74+OEJFo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "db7d5e2332710f5abb088f6b5de927d7f9511b35",
+        "rev": "32904dfe1cf86039f3c8c9f41f94e1cfd76dbb34",
         "type": "github"
       },
       "original": {
@@ -43,11 +63,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1791662279,
-        "narHash": "sha256-xI8L+UwJLIg75yVJwLPsY+AUEP1teCT3FyuvodyJu2Y=",
+        "lastModified": 1791765022,
+        "narHash": "sha256-ZGq3ptZzA+oO0N/Wi/F+GbuTijLkYExD01LvpNFAvr0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6fcc160353f63555b560f25588925133c8f61f2a",
+        "rev": "7993f34ee47e28a3d607a525aadc6c94b73be728",
         "type": "github"
       },
       "original": {
@@ -60,6 +80,7 @@
     "root": {
       "inputs": {
         "areofyl-fetch": "areofyl-fetch",
+        "containerlab": "containerlab",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix"
