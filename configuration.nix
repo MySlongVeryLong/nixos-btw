@@ -85,11 +85,21 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "slong";
-    extraGroups = ["networkmanager" "wheel" "libvirtd" "kvm"];
+    extraGroups = ["networkmanager" "wheel" "libvirtd" "kvm" "clab_admins" "docker" "wireshark"];
     packages = with pkgs; [
       #  thunderbird
     ];
   };
+
+  hardware.graphics = {
+    
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+      pocl
+    ];
+   };
+
 
   # sysytem wide packages
   environment.systemPackages = with pkgs; [
@@ -119,6 +129,14 @@
     ciscoPacketTracer9
     anki
     vscode
+    putty
+    prismlauncher
+    obsidian
+    zoxide
+    aircrack-ng
+    hcxtools
+    seclists
+    wireshark
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

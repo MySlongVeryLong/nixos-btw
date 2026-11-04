@@ -19,10 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    containerlab = {
-      url = "github:srl-labs/containerlab"; # FIXED: Added missing semicolon
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; # FIXED: Adjusted indentation
   };
 
   outputs = {
@@ -31,7 +27,6 @@
     home-manager,
     areofyl-fetch,
     spicetify-nix,
-    containerlab,
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
@@ -45,13 +40,6 @@
         };
         modules = [
           ./configuration.nix
-          containerlab.nixosModules.default
-          
-          # FIXED: Wrapped bare options inside an attribute set { }
-          {
-            programs.containerlab.enable = true;
-            virtualisation.docker.enable = true;
-          }
 
           # 1. Inject the NixOS module into your system configuration
           home-manager.nixosModules.default
@@ -60,6 +48,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
+
               users.slong = import ./home.nix;
             };
           }
@@ -68,4 +57,3 @@
     };
   };
 }
-

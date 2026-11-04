@@ -18,12 +18,10 @@
   home.stateVersion = "26.05";
   home.packages = with pkgs; [
     nixd
-    neovim
     vim
     btop
     shotcut
     tealdeer
-    obsidian
     hyfetch
     obs-studio
     bat
@@ -38,7 +36,6 @@
     mpv
     eog
     fzf
-    wireshark
     mtr
     proton-vpn
     protonup-ng
@@ -47,7 +44,13 @@
     virt-viewer
     yamlfmt
     figlet
+    chafa
+    asciinema
     ascii
+    gif-for-cli
+    magic-wormhole
+    netcat
+    hashcat
   ];
 
   # zsh
@@ -63,4 +66,16 @@
       theme = "af-magic";
     };
   };
+
+  # neovim
+
+  programs.neovim = {
+    enable = true;
+    extraConfig = ''
+      set number
+      set relativenumber
+      set guicursor=a:block
+    '';
+  };
+  
 }
