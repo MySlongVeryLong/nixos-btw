@@ -51,6 +51,9 @@
     magic-wormhole
     netcat
     hashcat
+    net-snmp
+    burpsuite
+    
   ];
 
   # zsh

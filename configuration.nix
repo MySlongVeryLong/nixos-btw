@@ -128,7 +128,6 @@
     filezilla
     ciscoPacketTracer9
     anki
-    vscode
     putty
     prismlauncher
     obsidian
@@ -137,6 +136,9 @@
     hcxtools
     seclists
     wireshark
+    tree
+    quickemu
+    quickgui
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
